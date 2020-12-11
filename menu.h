@@ -2,6 +2,7 @@
 #define menu_h
 using namespace std;
 
+//declaring the variables and functions used
 double b,c,d,e,f,g,h,i,j,k,l;
 int terms;
 void runDerivative();
@@ -90,6 +91,7 @@ void runDerivative(){
       cout<<derivative()<<endl;
       break;
     case 'c':
+    //quartic
       cout<<"\nEnter coefficients of terms with the highest power\nfirst, then going down by 1 power each time.\n\n(EX: first*x^4 + second*x^3 + third*x^2 + fourth*x + constant)\n\n";
       cout<<"Enter the first term: ";
       cin>>g;
@@ -109,10 +111,12 @@ void runDerivative(){
       cout<<derivative()<<endl;
       break;
     case 'd':
+    //allows the user to enter terms
       customTerms();
       cout<<derivative()<<endl;
       break;
     case 'A':
+    //quadratic
       cout<<"\nEnter coefficients of terms with the highest power\nfirst, then going down by 1 power each time.\n\n(EX: first*x^2 + second*x + constant)\n\n";
       cout<<"Enter the first term: ";
       cin>>i;
@@ -130,6 +134,7 @@ void runDerivative(){
       cout<<derivative()<<endl;
       break;
     case 'B':
+    //cubic
       cout<<"\nEnter coefficients of terms with the highest power\nfirst, then going down by 1 power each time.\n\n(EX: first*x^3 + second*x^2 + third*x + constant)\n\n";
       cout<<"Enter the first term: ";
       cin>>h;
@@ -148,6 +153,7 @@ void runDerivative(){
       cout<<derivative()<<endl;
       break;
     case 'C':
+    //quartic
       cout<<"\nEnter coefficients of terms with the highest power\nfirst, then going down by 1 power each time.\n\n(EX: first*x^4 + second*x^3 + third*x^2 + fourth*x + constant)\n\n";
       cout<<"Enter the first term: ";
       cin>>g;
@@ -167,16 +173,19 @@ void runDerivative(){
       cout<<derivative()<<endl;
       break;
     case 'D':
+    //allows the user to enter terms
       customTerms();
       cout<<derivative()<<endl;
       break;
     default:
+    //fail-safe
       cout<<"Enter a, b, c, or d\n";
       runDerivative();
   }
 }
-
+//runs the simpson rule integral method
 void runSimpson(){
+  //same thing as before-quadratic, cubic, etc...
   cout<<"What type of equation do you want to find the integral of?\n(A)Quadratic\n(B)Cubic\n(C)Quartic\n(D)Custom number of terms(Up to 10)\n";
   char a;
   cin>>a;
@@ -304,6 +313,7 @@ void runSimpson(){
 }
 
 void runTrapezoid(){
+  //same thing once again. This can probably be compressed, this will be something I can maybe add on to.
   cout<<"What type of equation do you want to find the integral of?\n(A)Quadratic\n(B)Cubic\n(C)Quartic\n(D)Custom number of terms(Up to 10)\n";
   char a;
   cin>>a;
@@ -430,11 +440,13 @@ void runTrapezoid(){
   }
 }
 
+//the function that the derivative and integral both use
 double f1(double x){
   return x*(x*(x*(x*(x*(x*(x*(x*((b*x)+c)+d)+e)+f)+g)+h)+i)+j)+k;
 }
 
 double derivative(){
+  //the magic for the derivative
   cout<<"for what value of x do you want to find the derivative?"<<endl;
   double x;
   cin>>x;
@@ -448,6 +460,7 @@ double derivative(){
 }
 
 int customTerms(){
+  //the custom amount of terms handler. It's the code that does all the heavy lifting for it.
   int terms;
   cout<<"Enter the number of terms: ";
   cin>>terms;
@@ -646,6 +659,7 @@ return terms;
 }
 
 double Simpson(){
+  //integral using simpson's 1/3 rule.
   double lower, upper;
   int sections;
   cout<<"Enter the lower x boundary: ";
@@ -654,6 +668,12 @@ double Simpson(){
   cin>>upper;
   cout<<"Enter the number of sections(Whole Numbers)\nTip: Larger numbers are more accurate, up to 10,000\n";
   cin>>sections;
+  while(sections<0&&sections>10001){
+    cin.clear();
+    cin.ignore();
+    cout<<"Enter a positive integer up to 10,000: ";
+    cin>>sections;
+  };
   double h, sum=0;
   int i;
   h=(upper-lower)/sections;
@@ -669,6 +689,7 @@ double Simpson(){
 }
 
 double Trapezoid(){
+  //code to handle the trapezoid rule version
   double lower, upper;
   int sections;
   cout<<"Enter the lower x boundary: ";
