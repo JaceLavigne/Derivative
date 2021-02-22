@@ -440,25 +440,6 @@ void runTrapezoid(){
   }
 }
 
-//the function that the derivative and integral both use
-double f1(double x){
-  return x*(x*(x*(x*(x*(x*(x*(x*((b*x)+c)+d)+e)+f)+g)+h)+i)+j)+k;
-}
-
-double derivative(){
-  //the magic for the derivative
-  cout<<"for what value of x do you want to find the derivative?"<<endl;
-  double x;
-  cin>>x;
-  double der;
-  double z=10;
-  do{
-    der=((f1(x+z)-f1(x))/z);
-    z=z/2;
-  }while(z>0.0000000001);
-  return der;
-}
-
 int customTerms(){
   //the custom amount of terms handler. It's the code that does all the heavy lifting for it.
   int terms;
@@ -656,6 +637,25 @@ int customTerms(){
     break;
 }
 return terms;
+}
+
+//the function that the derivative and integral both use
+double f1(double x){
+  return x*(x*(x*(x*(x*(x*(x*(x*((b*x)+c)+d)+e)+f)+g)+h)+i)+j)+k;
+}
+
+double derivative(){
+  //the magic for the derivative
+  cout<<"for what value of x do you want to find the derivative?"<<endl;
+  double x;
+  cin>>x;
+  double der;
+  double z=10;
+  do{
+    der=((f1(x+z)-f1(x))/z);
+    z=z/2;
+  }while(z>0.0000000001);
+  return der;
 }
 
 double Simpson(){
